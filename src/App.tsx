@@ -3,11 +3,20 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Intro from "./pages/Intro";
+import Quiz from "./pages/Quiz";
+import Gift from "./pages/Gift";
+import Letter from "./pages/Letter";
+import Final from "./pages/Final";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+/**
+ * Valentine's Day Story App
+ * A romantic, story-driven experience with 5 chapters
+ * Flow: Intro → Quiz → Gift → Letter → Final Song
+ */
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -15,8 +24,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* Story Flow Pages */}
+          <Route path="/" element={<Intro />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/gift" element={<Gift />} />
+          <Route path="/letter" element={<Letter />} />
+          <Route path="/final" element={<Final />} />
+          
+          {/* Catch-all for 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

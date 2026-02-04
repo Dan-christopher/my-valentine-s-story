@@ -46,8 +46,12 @@ const Quiz = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const navigate = useNavigate();
 
+  // Ensure currentQuestion is within bounds (in case questions array changed)
+  const safeCurrentQuestion = Math.min(currentQuestion, questions.length - 1);
+  const currentQ = questions[safeCurrentQuestion];
+
   const handleAnswer = (optionIndex: number) => {
-    const option = questions[currentQuestion].options[optionIndex];
+    const option = currentQ.options[optionIndex];
     setFeedback(option.feedback);
     setShowFeedback(true);
     setScore((prev) => prev + 1);
@@ -56,7 +60,7 @@ const Quiz = () => {
     setTimeout(() => {
       setShowFeedback(false);
       
-      if (currentQuestion < questions.length - 1) {
+      if (safeCurrentQuestion < questions.length - 1) {
         setCurrentQuestion((prev) => prev + 1);
       } else {
         // Quiz complete - save state and navigate
@@ -77,13 +81,13 @@ const Quiz = () => {
       
       <FadeWrapper show={isVisible} className="relative z-10 w-full max-w-lg mx-auto px-4">
         {/* Progress indicator */}
-        <Progress current={currentQuestion} total={questions.length} />
+        <Progress current={safeCurrentQuestion} total={questions.length} />
 
         {/* Question card */}
         <div className="bg-card rounded-3xl p-6 md:p-10 shadow-[var(--shadow-card)] text-center">
           {/* Question */}
           <h2 className="font-romantic text-2xl md:text-3xl text-foreground mb-8 leading-relaxed">
-            {questions[currentQuestion].question}
+            {currentQ.question}
           </h2>
 
           {/* Feedback overlay */}
@@ -95,7 +99,7 @@ const Quiz = () => {
 
           {/* Answer options */}
           <div className="space-y-4">
-            {questions[currentQuestion].options.map((option, index) => (
+            {currentQ.options.map((option, index) => (
               <Button
                 key={index}
                 variant="outline"

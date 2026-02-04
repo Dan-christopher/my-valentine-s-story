@@ -5,25 +5,30 @@ import FadeWrapper from '@/components/FadeWrapper';
 import FloatingHearts from '@/components/FloatingHearts';
 import { Play, Pause, Heart, ExternalLink } from 'lucide-react';
 
-// Lyrics with timestamps (in seconds) - Customize with your chosen song
-// Using placeholder lyrics to avoid copyright issues
+// Enna Sona - Arijit Singh (from OK Jaanu)
+// Placeholder descriptions for lyric moments - add your own personal messages!
 const lyrics = [
-  { time: 0, text: "♪ The moment I saw you ♪" },
-  { time: 4, text: "♪ I knew you were the one ♪" },
-  { time: 8, text: "♪ My heart started singing ♪" },
-  { time: 12, text: "♪ A melody of love begun ♪" },
-  { time: 16, text: "" },
-  { time: 18, text: "♪ With every passing day ♪" },
-  { time: 22, text: "♪ My love for you grows strong ♪" },
-  { time: 26, text: "♪ You're everything I wished for ♪" },
-  { time: 30, text: "♪ The place where I belong ♪" },
+  { time: 0, text: "🎵 [Intro melody begins...] 🎵" },
+  { time: 5, text: "♪ [Soft humming...] ♪" },
+  { time: 12, text: "✨ This song reminds me of you ✨" },
+  { time: 18, text: "♪ [First verse - about finding someone special] ♪" },
+  { time: 26, text: "💭 Every word feels like it was written for us" },
   { time: 34, text: "" },
-  { time: 36, text: "♪ Forever and always ♪" },
-  { time: 40, text: "♪ You'll be my valentine ♪" },
-  { time: 44, text: "♪ Through all the seasons ♪" },
-  { time: 48, text: "♪ Our hearts will intertwine ♪" },
-  { time: 52, text: "" },
-  { time: 54, text: "💕 I love you 💕" },
+  { time: 38, text: "♪ [Chorus begins...] ♪" },
+  { time: 46, text: "💕 You make everything beautiful 💕" },
+  { time: 54, text: "" },
+  { time: 58, text: "♪ [Second verse - deeper feelings] ♪" },
+  { time: 68, text: "🌹 I found my home in you" },
+  { time: 76, text: "" },
+  { time: 80, text: "♪ [Emotional chorus repeat...] ♪" },
+  { time: 90, text: "💝 Tu hi mera sab kuch hai 💝" },
+  { time: 100, text: "" },
+  { time: 105, text: "♪ [Bridge - heartfelt moment] ♪" },
+  { time: 115, text: "Forever yours... 💗" },
+  { time: 125, text: "" },
+  { time: 130, text: "🎵 [Final chorus fades...] 🎵" },
+  { time: 145, text: "" },
+  { time: 150, text: "💕 I love you, always 💕" },
 ];
 
 /**
@@ -38,16 +43,16 @@ const Final = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const navigate = useNavigate();
 
-  // Simulated playback timer (since we don't have actual audio)
+  // Simulated playback timer (Enna Sona is ~4:30 = 270 seconds)
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isPlaying) {
       setShowLyrics(true);
       interval = setInterval(() => {
         setCurrentTime((prev) => {
-          if (prev >= 60) {
+          if (prev >= 160) {
             setIsPlaying(false);
-            return 60;
+            return 160;
           }
           return prev + 1;
         });
@@ -58,7 +63,7 @@ const Final = () => {
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
-    if (!isPlaying && currentTime >= 60) {
+    if (!isPlaying && currentTime >= 160) {
       setCurrentTime(0);
     }
   };
@@ -108,9 +113,9 @@ const Final = () => {
 
         {/* Song info */}
         <p className="text-muted-foreground font-body text-sm mb-8">
-          [Song Title] - [Artist Name]
+          <span className="font-semibold text-foreground">Enna Sona</span> - Arijit Singh
           <br />
-          <span className="text-xs">Replace with your special song</span>
+          <span className="text-xs italic">from OK Jaanu</span>
         </p>
 
         {/* Lyrics display */}
@@ -138,7 +143,7 @@ const Final = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
             variant="outline"
-            onClick={() => window.open('https://spotify.com', '_blank')}
+            onClick={() => window.open('https://open.spotify.com/track/4bOHqT4jXJdwL2flYuX4pq', '_blank')}
             className="inline-flex items-center gap-2"
           >
             <ExternalLink className="w-4 h-4" />
@@ -146,7 +151,7 @@ const Final = () => {
           </Button>
           <Button
             variant="outline"
-            onClick={() => window.open('https://youtube.com', '_blank')}
+            onClick={() => window.open('https://www.youtube.com/watch?v=rHhAKKl5Rjg', '_blank')}
             className="inline-flex items-center gap-2"
           >
             <ExternalLink className="w-4 h-4" />

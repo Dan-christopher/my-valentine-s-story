@@ -9,6 +9,7 @@ import Gift from "./pages/Gift";
 import Letter from "./pages/Letter";
 import Final from "./pages/Final";
 import NotFound from "./pages/NotFound";
+import PageNav from "./components/PageNav";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <PageNav />
         <Routes>
           {/* Story Flow Pages */}
           <Route path="/" element={<Intro />} />

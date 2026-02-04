@@ -8,15 +8,6 @@ import FloatingHearts from '@/components/FloatingHearts';
 // Quiz questions - Customize these with personal questions
 const questions = [
   {
-    question: "What's my favorite way to spend a Sunday?",
-    options: [
-      { text: "Cozy movie marathon 🎬", feedback: "You know me so well! 💗" },
-      { text: "Adventure outdoors 🌲", feedback: "That's cute 😌" },
-      { text: "Cooking something new 👨‍🍳", feedback: "Aww, close! 💕" },
-      { text: "Sleeping in forever 😴", feedback: "Ha! You're not wrong 🥰" },
-    ],
-  },
-  {
     question: "What makes me smile the most?",
     options: [
       { text: "Your laugh 💫", feedback: "Absolutely true 🥹" },
@@ -35,12 +26,10 @@ const questions = [
     ],
   },
   {
-    question: "What do I love most about us?",
+    question: "What do I like more about you? 😏🔥",
     options: [
-      { text: "How we laugh together 😄", feedback: "Our joy is special 💗" },
-      { text: "How safe I feel with you 🏠", feedback: "You're my home 🥹" },
-      { text: "Our silly inside jokes 🤭", feedback: "Only we understand! 💕" },
-      { text: "Everything, honestly 💝", feedback: "Correct answer! 🎉" },
+      { text: "Your ass 🍑", feedback: "Good choice... 😈💕" },
+      { text: "Your boobs 🫦", feedback: "Can't argue with that! 🔥💗" },
     ],
   },
 ];

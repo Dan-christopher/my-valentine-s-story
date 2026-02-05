@@ -16,15 +16,15 @@ const GiftBox = ({ onOpen }: GiftBoxProps) => {
 
   const handleClick = () => {
     if (isOpened) return;
-    
+
     // Start shake animation
     setIsShaking(true);
-    
+
     // After shake, start opening
     setTimeout(() => {
       setIsShaking(false);
       setIsOpening(true);
-      
+
       // After opening animation, show content
       setTimeout(() => {
         setIsOpened(true);
@@ -41,15 +41,15 @@ const GiftBox = ({ onOpen }: GiftBoxProps) => {
           <Sparkles className="absolute -top-8 -left-8 w-6 h-6 text-gold animate-float" />
           <Sparkles className="absolute -top-4 -right-10 w-5 h-5 text-gold animate-float delay-200" />
           <Sparkles className="absolute -bottom-6 -left-6 w-4 h-4 text-gold animate-float delay-400" />
-          
+
           <div className="bg-card rounded-3xl p-8 md:p-12 shadow-[var(--shadow-card)] max-w-md mx-auto">
             <Heart className="w-16 h-16 text-primary mx-auto mb-6 animate-heartbeat" />
-            
+
             <p className="font-romantic text-xl md:text-2xl text-foreground leading-relaxed">
               You didn't win this by answering questions.
             </p>
             <p className="font-romantic text-xl md:text-2xl text-primary mt-4 leading-relaxed">
-              You won because you stayed till the end. 💗
+              You won because you always stayed with me till the end. 💗
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ const GiftBox = ({ onOpen }: GiftBoxProps) => {
     >
       {/* Gift box shadow */}
       <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-xl transform translate-y-4" />
-      
+
       {/* Gift box */}
       <div className="relative bg-gradient-to-br from-primary to-accent rounded-3xl p-12 md:p-16 shadow-[var(--shadow-card)]">
         {/* Ribbon vertical */}
@@ -85,10 +85,10 @@ const GiftBox = ({ onOpen }: GiftBoxProps) => {
             <div className="w-4 h-4 bg-gold rounded-full absolute left-1/2 -translate-x-1/2" />
           </div>
         </div>
-        
+
         <Gift className="w-20 h-20 md:w-24 md:h-24 text-primary-foreground relative z-10" />
       </div>
-      
+
       <p className="mt-6 text-muted-foreground font-body animate-pulse">
         Tap to open 💝
       </p>

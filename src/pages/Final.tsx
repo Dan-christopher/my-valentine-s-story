@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
 import Button from '@/components/Button';
 import FadeWrapper from '@/components/FadeWrapper';
 import FloatingHearts from '@/components/FloatingHearts';
-import { Play, Pause, Heart, ExternalLink } from 'lucide-react';
+import { Play, Pause, Heart } from 'lucide-react';
 
 // Enna Sona - Arijit Singh (from OK Jaanu)
 // Placeholder descriptions for lyric moments - add your own personal messages!
@@ -40,32 +39,42 @@ const Final = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [showLyrics, setShowLyrics] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const navigate = useNavigate();
 
-  // Simulated playback timer (Enna Sona is ~4:30 = 270 seconds)
+  // Reference to the native audio element
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const AUDIO_SRC = "/audio/song.mp3";
+
+  // Set initial volume when component mounts
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (isPlaying) {
-      setShowLyrics(true);
-      interval = setInterval(() => {
-        setCurrentTime((prev) => {
-          if (prev >= 160) {
-            setIsPlaying(false);
-            return 160;
-          }
-          return prev + 1;
-        });
-      }, 1000);
+    if (audioRef.current) {
+      audioRef.current.volume = 0.6;
     }
-    return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, []);
 
   const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-    if (!isPlaying && currentTime >= 160) {
-      setCurrentTime(0);
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(e => console.error("Playback failed:", e));
+      }
+      setIsPlaying(!isPlaying);
     }
+  };
+
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      const time = audioRef.current.currentTime;
+      setCurrentTime(time);
+      if (time > 0) {
+        setShowLyrics(true);
+      }
+    }
+  };
+
+  const handleEnded = () => {
+    setIsPlaying(false);
+    setCurrentTime(0);
   };
 
   // Get visible lyrics based on current time
@@ -74,7 +83,16 @@ const Final = () => {
   return (
     <div className="page-container relative overflow-hidden min-h-screen py-8">
       <FloatingHearts />
-      
+
+      {/* Native Audio Element */}
+      <audio
+        ref={audioRef}
+        src={AUDIO_SRC}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleEnded}
+        preload="auto"
+      />
+
       <FadeWrapper show={isVisible} className="relative z-10 w-full max-w-lg mx-auto px-4 text-center">
         {/* Title */}
         <h1 className="font-romantic text-3xl md:text-4xl text-foreground mb-4">
@@ -138,26 +156,6 @@ const Final = () => {
             </div>
           </div>
         )}
-
-        {/* External link buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            variant="outline"
-            onClick={() => window.open('https://open.spotify.com/track/4bOHqT4jXJdwL2flYuX4pq', '_blank')}
-            className="inline-flex items-center gap-2"
-          >
-            <ExternalLink className="w-4 h-4" />
-            Listen on Spotify
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => window.open('https://www.youtube.com/watch?v=rHhAKKl5Rjg', '_blank')}
-            className="inline-flex items-center gap-2"
-          >
-            <ExternalLink className="w-4 h-4" />
-            Watch on YouTube
-          </Button>
-        </div>
 
         {/* End message */}
         <div className="mt-12 pt-8 border-t border-rose-light">

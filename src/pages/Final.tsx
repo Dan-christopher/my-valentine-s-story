@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
-import Button from '@/components/Button';
 import FadeWrapper from '@/components/FadeWrapper';
 import FloatingHearts from '@/components/FloatingHearts';
 import { Play, Pause, Heart } from 'lucide-react';
 
 /**
- * Final Page - The musical dedication & Book Album
- * Plays a song and shows a book-style photo album
+ * Final Page - Music Controlled Book Album
+ * Book opens and pages flip automatically when music plays
  */
 const Final = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -34,6 +33,28 @@ const Final = () => {
     }
   }, []);
 
+  // Sync Book State with Music Playback
+  useEffect(() => {
+    if (isPlaying) {
+      // Delay book opening slightly after music starts for effect
+      const openTimeout = setTimeout(() => setIsBookOpen(true), 500);
+
+      // Auto-flip pages interval
+      const flipInterval = setInterval(() => {
+        setPhotoIndex((prev) => (prev + 1) % photos.length);
+      }, 4000); // Flip every 4 seconds
+
+      return () => {
+        clearTimeout(openTimeout);
+        clearInterval(flipInterval);
+      };
+    } else {
+      // Optional: Close book when music stops? 
+      // User requirement implies 'Book stays open on current page' if paused.
+      // So we do NOTHING here, keeping current state.
+    }
+  }, [isPlaying, photos.length]);
+
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -47,14 +68,9 @@ const Final = () => {
 
   const handleEnded = () => {
     setIsPlaying(false);
-  };
-
-  const handleBookClick = () => {
-    if (!isBookOpen) {
-      setIsBookOpen(true);
-    } else {
-      setPhotoIndex((prev) => (prev + 1) % photos.length);
-    }
+    // Optional: Reset book when song ends?
+    // setIsBookOpen(false); 
+    // setPhotoIndex(0);
   };
 
   return (
@@ -77,7 +93,8 @@ const Final = () => {
         <p className="text-primary text-2xl mb-8">my love ❤️</p>
 
         {/* Book Container */}
-        <div className="relative mx-auto mb-10 w-64 h-80 perspective-[1500px] cursor-pointer" onClick={handleBookClick}>
+        {/* Pointer events disabled to prevent manual interaction */}
+        <div className="relative mx-auto mb-10 w-64 h-80 perspective-[1500px] pointer-events-none select-none">
           <div className="relative w-full h-full preserve-3d transition-transform duration-700">
 
             {/* Pages (Right Side / Inside) */}
@@ -94,13 +111,13 @@ const Final = () => {
                     alt={`Memory ${index + 1}`}
                     className={`
                       absolute inset-0 w-full h-full object-cover rounded-md
-                      transition-all duration-500 origin-left
+                      transition-all duration-1000 ease-in-out origin-left
                     `}
                     style={{
                       opacity: index === photoIndex ? 1 : 0,
                       transform: index === photoIndex
                         ? 'rotateY(0deg)'
-                        : (index < photoIndex ? 'rotateY(-180deg)' : 'rotateY(0deg)'), // Simple stack logic
+                        : (index < photoIndex ? 'rotateY(-180deg)' : 'rotateY(0deg)'),
                       zIndex: index === photoIndex ? 10 : 0
                     }}
                   />
@@ -121,7 +138,6 @@ const Final = () => {
             >
               <Heart className="w-16 h-16 text-white animate-pulse mb-4" fill="currentColor" />
               <p className="font-romantic text-white text-xl">Our Story</p>
-              <p className="text-white/80 text-sm mt-2">Tap to Open 💕</p>
             </div>
 
             {/* Fake Back Page (Visible when cover flips) */}
@@ -132,31 +148,17 @@ const Final = () => {
               `}
               style={{
                 transform: isBookOpen ? 'rotateY(-180deg)' : 'rotateY(0deg)',
-                backfaceVisibility: 'hidden' // Hide when cover is closed
+                backfaceVisibility: 'hidden'
               }}
             >
-              {/* Back of cover content if needed */}
             </div>
 
           </div>
-
-          {/* Helper Hint */}
-          <p
-            className={`
-              mt-6 text-primary/80 font-body text-sm animate-pulse transition-opacity duration-500
-              ${isBookOpen ? 'opacity-100' : 'opacity-0'}
-            `}
-          >
-            Tap page to flip &rarr;
-          </p>
         </div>
 
         {/* Play button */}
         <button
-          onClick={(e) => {
-            e.stopPropagation(); // Prevent book click
-            togglePlay();
-          }}
+          onClick={togglePlay}
           className={`
             w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8
             bg-primary text-primary-foreground shadow-[var(--shadow-card)]

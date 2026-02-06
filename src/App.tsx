@@ -23,7 +23,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/my-valentine-s-story">
         <PageNav />
         <Routes>
           {/* Story Flow Pages */}
@@ -32,7 +32,7 @@ const App = () => (
           <Route path="/gift" element={<Gift />} />
           <Route path="/letter" element={<Letter />} />
           <Route path="/final" element={<Final />} />
-          
+
           {/* Catch-all for 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>

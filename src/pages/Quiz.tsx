@@ -10,7 +10,7 @@ const questions = [
   {
     question: "If I say 'Kuch nhi hua'… what stage are we actually at?",
     options: [
-      { text: "Mildly annoyed ", feedback: "Maybe just a little 😌" },
+      { text: "Mildly annoyed 😒", feedback: "Maybe just a little 😌" },
       { text: "World War 3 loading… 💀", feedback: "Okay okay dramatic but valid 😭" },
       { text: "Waiting for you to ask again 🥲", feedback: "Yes please ask again 😌" },
       { text: "Testing your emotional intelligence 🧠", feedback: "This is a certified couple moment 😂❤️" },

@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const pages = [
   { path: '/', label: 'Intro' },
@@ -12,68 +12,46 @@ const pages = [
 const PageNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const currentIndex = pages.findIndex(p => p.path === location.pathname);
   const hasPrev = currentIndex > 0;
   const hasNext = currentIndex < pages.length - 1;
 
-  return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center gap-2 bg-card/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-[var(--shadow-card)] border border-rose-light">
-        {/* Home button */}
-        <button
-          onClick={() => navigate('/')}
-          className="p-2 rounded-full hover:bg-rose-light/50 transition-colors text-muted-foreground hover:text-primary"
-          aria-label="Go to start"
-        >
-          <Home className="w-4 h-4" />
-        </button>
+  // Don't show nav if route not found in pages
+  if (currentIndex === -1) return null;
 
+  return (
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+      <div className="flex items-center gap-3 bg-white/80 backdrop-blur-md rounded-full px-4 py-2 shadow-md border border-rose-200/60 pointer-events-auto transition-all hover:bg-white/95 hover:shadow-lg hover:scale-105">
         {/* Previous */}
         <button
           onClick={() => hasPrev && navigate(pages[currentIndex - 1].path)}
           disabled={!hasPrev}
-          className={`p-2 rounded-full transition-colors ${
-            hasPrev 
-              ? 'hover:bg-rose-light/50 text-muted-foreground hover:text-primary' 
-              : 'text-muted-foreground/30 cursor-not-allowed'
-          }`}
+          className={`p-1.5 rounded-full transition-colors ${hasPrev
+            ? 'hover:bg-rose-500/10 text-rose-900 hover:text-rose-600'
+            : 'text-rose-900/20 cursor-not-allowed'
+            }`}
           aria-label="Previous page"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
 
-        {/* Page indicators */}
-        <div className="flex items-center gap-1.5 px-2">
-          {pages.map((page, index) => (
-            <button
-              key={page.path}
-              onClick={() => navigate(page.path)}
-              className={`
-                w-2 h-2 rounded-full transition-all duration-300
-                ${index === currentIndex 
-                  ? 'bg-primary w-6' 
-                  : 'bg-rose-light hover:bg-primary/50'
-                }
-              `}
-              aria-label={`Go to ${page.label}`}
-              title={page.label}
-            />
-          ))}
-        </div>
+        {/* Page Indicator */}
+        <span className="text-xs font-medium text-rose-900/60 min-w-[3rem] text-center font-body tracking-wider">
+          {currentIndex + 1} <span className="text-rose-300">/</span> {pages.length}
+        </span>
 
         {/* Next */}
         <button
           onClick={() => hasNext && navigate(pages[currentIndex + 1].path)}
           disabled={!hasNext}
-          className={`p-2 rounded-full transition-colors ${
-            hasNext 
-              ? 'hover:bg-rose-light/50 text-muted-foreground hover:text-primary' 
-              : 'text-muted-foreground/30 cursor-not-allowed'
-          }`}
+          className={`p-1.5 rounded-full transition-colors ${hasNext
+            ? 'hover:bg-rose-500/10 text-rose-900 hover:text-rose-600'
+            : 'text-rose-900/20 cursor-not-allowed'
+            }`}
           aria-label="Next page"
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-5 h-5" />
         </button>
       </div>
     </div>

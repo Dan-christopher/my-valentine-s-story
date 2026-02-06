@@ -6,7 +6,6 @@ import { Play, Pause, Heart } from 'lucide-react';
 /**
  * Final Page - Music Controlled Book Album
  * Book opens and pages flip automatically when music plays
- * Mobile-First Optimized with Tightened Spacing
  */
 const Final = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -61,6 +60,10 @@ const Final = () => {
         clearTimeout(openTimeout);
         clearInterval(flipInterval);
       };
+    } else {
+      // Optional: Close book when music stops? 
+      // User requirement implies 'Book stays open on current page' if paused.
+      // So we do NOTHING here, keeping current state.
     }
   }, [isPlaying, photos.length]);
 
@@ -77,13 +80,13 @@ const Final = () => {
 
   const handleEnded = () => {
     setIsPlaying(false);
+    // Optional: Reset book when song ends?
+    // setIsBookOpen(false); 
+    // setPhotoIndex(0);
   };
 
   return (
-    <div
-      className="page-container relative overflow-hidden flex flex-col items-center justify-center min-h-[100dvh] w-full px-4 py-4"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
-    >
+    <div className="page-container relative overflow-hidden min-h-screen py-8">
       <FloatingHearts />
 
       {/* Native Audio Element */}
@@ -94,24 +97,16 @@ const Final = () => {
         preload="auto"
       />
 
-      <FadeWrapper show={isVisible} className="relative z-10 w-full max-w-lg md:max-w-xl mx-auto flex flex-col items-center">
-        {/* Title Section */}
-        <div className="text-center mb-4 md:mb-8 w-full">
-          <h1 className="font-romantic text-3xl sm:text-4xl text-foreground mb-2 px-2 leading-tight">
-            This song is dedicated to you
-          </h1>
-          <p className="text-primary text-xl sm:text-2xl">my love ❤️</p>
-        </div>
+      <FadeWrapper show={isVisible} className="relative z-10 w-full max-w-lg mx-auto px-4 text-center">
+        {/* Title */}
+        <h1 className="font-romantic text-3xl md:text-4xl text-foreground mb-4">
+          This song is dedicated to you
+        </h1>
+        <p className="text-primary text-2xl mb-8">my love ❤️</p>
 
-        {/* Book Container - Responsive */}
-        {/* Tighter margins for better vertical fit */}
-        <div
-          className="relative mx-auto mb-6 sm:mb-8 md:mb-10 perspective-[1500px] pointer-events-none select-none"
-          style={{
-            width: 'min(280px, 65vw)', // Slightly reduced width for better proportion
-            height: 'min(350px, 81.25vw)' // Aspect ratio ~4:5
-          }}
-        >
+        {/* Book Container */}
+        {/* Pointer events disabled to prevent manual interaction */}
+        <div className="relative mx-auto mb-10 w-64 h-80 perspective-[1500px] pointer-events-none select-none">
           <div className="relative w-full h-full preserve-3d transition-transform duration-700">
 
             {/* Pages (Right Side / Inside) */}
@@ -153,8 +148,8 @@ const Final = () => {
                 transform: isBookOpen ? 'rotateY(-180deg)' : 'rotateY(0deg)',
               }}
             >
-              <Heart className="w-12 h-12 sm:w-16 sm:h-16 text-white animate-pulse mb-3" fill="currentColor" />
-              <p className="font-romantic text-white text-lg sm:text-xl">Our Story</p>
+              <Heart className="w-16 h-16 text-white animate-pulse mb-4" fill="currentColor" />
+              <p className="font-romantic text-white text-xl">Our Story</p>
             </div>
 
             {/* Fake Back Page (Visible when cover flips) */}
@@ -177,37 +172,33 @@ const Final = () => {
         <button
           onClick={togglePlay}
           className={`
-            w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6
+            w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8
             bg-primary text-primary-foreground shadow-[var(--shadow-card)]
-            transition-all duration-300 hover:scale-110 active:scale-95
+            transition-all duration-300 hover:scale-110
             ${isPlaying ? 'animate-pulse-glow' : ''}
           `}
           aria-label={isPlaying ? 'Pause' : 'Play'}
-          style={{ minWidth: '44px', minHeight: '44px' }}
         >
           {isPlaying ? (
-            <Pause className="w-6 h-6 sm:w-8 sm:h-8" />
+            <Pause className="w-8 h-8" />
           ) : (
-            <Play className="w-6 h-6 sm:w-8 sm:h-8 ml-1" />
+            <Play className="w-8 h-8 ml-1" />
           )}
         </button>
 
         {/* Song info */}
-        <div className="text-center w-full px-4">
-          <p className="text-muted-foreground font-body text-sm mb-4 sm:mb-6">
-            <span className="font-semibold text-foreground">Enna Sona</span> - Arijit Singh
-            <br />
-            <span className="text-xs italic">from OK Jaanu</span>
-          </p>
-        </div>
+        <p className="text-muted-foreground font-body text-sm mb-8">
+          <span className="font-semibold text-foreground">Enna Sona</span> - Arijit Singh
+          <br />
+          <span className="text-xs italic">from OK Jaanu</span>
+        </p>
 
         {/* End message */}
-        {/* Even tighter spacing for better visibility */}
-        <div className="mt-0 pt-4 border-t border-rose-light w-full">
-          <p className="font-romantic text-lg sm:text-xl text-primary">
+        <div className="mt-12 pt-8 border-t border-rose-light">
+          <p className="font-romantic text-xl text-primary">
             Thank you for being my valentine 💝
           </p>
-          <p className="text-muted-foreground font-body text-xs sm:text-sm mt-1">
+          <p className="text-muted-foreground font-body text-sm mt-2">
             Made with love, just for you
           </p>
         </div>

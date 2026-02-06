@@ -8,19 +8,20 @@ import FloatingHearts from '@/components/FloatingHearts';
 // Quiz questions - Customize these with personal questions
 const questions = [
   {
-    question: "What makes me smile the most?",
+    question: "If I say 'Kuch nhi hua'… what stage are we actually at?",
     options: [
-      { text: "Your laugh 💫", feedback: "Absolutely true 🥹" },
-      { text: "Good food 🍕", feedback: "Okay, also true! 😋" },
-      { text: "Surprise hugs 🤗", feedback: "You know me well 💗" },
-      { text: "All of the above ✨", feedback: "Perfect answer! 💝" },
+      { text: "Mildly annoyed ", feedback: "Maybe just a little 😌" },
+      { text: "World War 3 loading… 💀", feedback: "Okay okay dramatic but valid 😭" },
+      { text: "Waiting for you to ask again 🥲", feedback: "Yes please ask again 😌" },
+      { text: "Testing your emotional intelligence 🧠", feedback: "This is a certified couple moment 😂❤️" },
     ],
+
   },
   {
     question: "What's our best memory together?",
     options: [
       { text: "Our first date 💑", feedback: "That was magical ✨" },
-      { text: "That spontaneous trip 🚗", feedback: "Best adventure ever! 🌟" },
+      { text: "Our first kiss 😘", feedback: "Best day ever! 🌟" },
       { text: "Late night conversations 🌙", feedback: "Those are precious 💫" },
       { text: "Every moment with you 💖", feedback: "You're making me blush! 🥰" },
     ],
@@ -29,7 +30,7 @@ const questions = [
     question: "What do I like more about you? 😏🔥",
     options: [
       { text: "Your ass 🍑", feedback: "Good choice... 😈💕" },
-      { text: "Your boobs 🫦", feedback: "Can't argue with that! 🔥💗" },
+      { text: "Your boobs 🥰", feedback: "Can't argue with that! 🔥💗" },
     ],
   },
 ];
@@ -59,14 +60,14 @@ const Quiz = () => {
     // Show feedback, then move to next question
     setTimeout(() => {
       setShowFeedback(false);
-      
+
       if (safeCurrentQuestion < questions.length - 1) {
         setCurrentQuestion((prev) => prev + 1);
       } else {
         // Quiz complete - save state and navigate
         localStorage.setItem('quizCompleted', 'true');
         localStorage.setItem('score', score.toString());
-        
+
         setIsVisible(false);
         setTimeout(() => {
           navigate('/gift');
@@ -78,7 +79,7 @@ const Quiz = () => {
   return (
     <div className="page-container relative overflow-hidden">
       <FloatingHearts />
-      
+
       <FadeWrapper show={isVisible} className="relative z-10 w-full max-w-lg mx-auto px-4">
         {/* Progress indicator */}
         <Progress current={safeCurrentQuestion} total={questions.length} />
@@ -114,9 +115,9 @@ const Quiz = () => {
         </div>
 
         {/* Encouragement text */}
-        <p className="text-center text-muted-foreground mt-8 font-body text-sm">
+        {/* <p className="text-center text-muted-foreground mt-8 font-body text-sm">
           There are no wrong answers here 💕
-        </p>
+        </p> */}
       </FadeWrapper>
     </div>
   );

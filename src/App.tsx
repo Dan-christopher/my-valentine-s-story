@@ -26,16 +26,14 @@ const App = () => (
       <BrowserRouter basename="/my-valentine-s-story">
         <PageNav />
         <Routes>
-          {/* Story Flow Pages */}
-          <Route path="/" element={<Intro />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/gift" element={<Gift />} />
-          <Route path="/letter" element={<Letter />} />
-          <Route path="/final" element={<Final />} />
-
-          {/* Catch-all for 404 */}
+          <Route index element={<Intro />} />
+          <Route path="quiz" element={<Quiz />} />
+          <Route path="gift" element={<Gift />} />
+          <Route path="letter" element={<Letter />} />
+          <Route path="final" element={<Final />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

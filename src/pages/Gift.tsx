@@ -63,10 +63,6 @@ const Gift = () => {
             {/* Buttons - only shows after gift is opened */}
             {giftOpened && (
               <div className="animate-fade-in mt-8 flex flex-col items-center gap-4">
-                <Button onClick={handleContinue} variant="outline" className="w-full max-w-md">
-                  Open your letter 💌
-                </Button>
-
                 <Button
                   onClick={handleReveal}
                   size="lg"
@@ -82,9 +78,9 @@ const Gift = () => {
           <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl max-w-sm mx-auto animate-scale-in border border-white/50">
             <div className="relative mb-6 rounded-xl overflow-hidden shadow-lg mx-auto" style={{ maxWidth: '300px' }}>
               <img
-                src={`${import.meta.env.BASE_URL}images/dress.jpg`}
+                src={`${import.meta.env.BASE_URL}images/dress.jpeg`}
                 alt="A special gift for you"
-                className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+                className="w-full h-auto object-cover transform hover:scale-105 transition-all duration-500"
               />
             </div>
 
@@ -92,13 +88,19 @@ const Gift = () => {
               <p className="font-romantic text-2xl md:text-3xl text-primary">
                 Do you like it? 😌
               </p>
-              <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed">
+              <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
                 Look behind you…
                 <br />
                 <span className="font-semibold text-foreground mt-2 block">
                   Someone is standing there with something for you.
                 </span>
               </p>
+
+              <div className="pt-4 animate-fade-in" style={{ animationDelay: '1000ms' }}>
+                <Button onClick={handleContinue} variant="primary" size="lg" className="w-full">
+                  Now… open your letter 💌
+                </Button>
+              </div>
             </div>
           </div>
         )}

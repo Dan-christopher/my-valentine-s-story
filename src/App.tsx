@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Intro from "./pages/Intro";
+import QuizInvite from "./pages/QuizInvite";
 import Quiz from "./pages/Quiz";
 import Gift from "./pages/Gift";
 import Letter from "./pages/Letter";
@@ -27,6 +28,7 @@ const App = () => (
         <PageNav />
         <Routes>
           <Route index element={<Intro />} />
+          <Route path="quiz-invite" element={<QuizInvite />} />
           <Route path="quiz" element={<Quiz />} />
           <Route path="gift" element={<Gift />} />
           <Route path="letter" element={<Letter />} />

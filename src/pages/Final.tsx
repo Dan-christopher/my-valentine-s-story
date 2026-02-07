@@ -16,28 +16,30 @@ const Final = () => {
 
   // Reference to the native audio element
   const audioRef = useRef<HTMLAudioElement>(null);
-  const AUDIO_SRC = "/audio/song.mp3";
+  const AUDIO_SRC = "/my-valentine-s-story/audio/song.mp3";
+
 
   // Photos to cycle through
   const photos = [
-    "/images/photo1.jpeg",
-    "/images/photo2.jpeg",
-    "/images/photo3.jpeg",
-    "/images/photo4.jpeg",
-    "/images/photo5.jpeg",
-    "/images/photo6.jpeg",
-    "/images/photo7.jpeg",
-    "/images/photo8.jpeg",
-    "/images/photo9.jpeg",
-    "/images/photo10.jpeg",
-    "/images/photo11.jpeg",
-    "/images/photo12.jpeg",
-    "/images/photo13.jpeg",
-    "/images/photo14.jpeg",
-    "/images/photo15.jpeg",
-    "/images/photo16.jpeg",
-    "/images/photo17.jpeg"
+    "/my-valentine-s-story/images/photo1.jpeg",
+    "/my-valentine-s-story/images/photo2.jpeg",
+    "/my-valentine-s-story/images/photo3.jpeg",
+    "/my-valentine-s-story/images/photo4.jpeg",
+    "/my-valentine-s-story/images/photo5.jpeg",
+    "/my-valentine-s-story/images/photo6.jpeg",
+    "/my-valentine-s-story/images/photo7.jpeg",
+    "/my-valentine-s-story/images/photo8.jpeg",
+    "/my-valentine-s-story/images/photo9.jpeg",
+    "/my-valentine-s-story/images/photo10.jpeg",
+    "/my-valentine-s-story/images/photo11.jpeg",
+    "/my-valentine-s-story/images/photo12.jpeg",
+    "/my-valentine-s-story/images/photo13.jpeg",
+    "/my-valentine-s-story/images/photo14.jpeg",
+    "/my-valentine-s-story/images/photo15.jpeg",
+    "/my-valentine-s-story/images/photo16.jpeg",
+    "/my-valentine-s-story/images/photo17.jpeg",
   ];
+
 
   // Set initial volume when component mounts
   useEffect(() => {

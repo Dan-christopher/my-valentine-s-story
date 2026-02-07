@@ -12,6 +12,7 @@ import FloatingHearts from '@/components/FloatingHearts';
 const Gift = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [giftOpened, setGiftOpened] = useState(false);
+  const [showReveal, setShowReveal] = useState(false);
   const navigate = useNavigate();
 
   // Check if quiz was completed (prevent skipping)
@@ -34,27 +35,71 @@ const Gift = () => {
     }, 800);
   };
 
+  const handleReveal = () => {
+    setIsVisible(false);
+    setTimeout(() => {
+      setShowReveal(true);
+      setIsVisible(true);
+    }, 800);
+  };
+
   return (
     <div className="page-container relative overflow-hidden">
       <FloatingHearts />
-      
-      <FadeWrapper show={isVisible} className="relative z-10 text-center px-4">
-        {/* Heading */}
-        <h1 className="font-romantic text-4xl md:text-5xl text-foreground mb-12">
-          You won 💝
-        </h1>
 
-        {/* Gift Box */}
-        <div className="mb-12">
-          <GiftBox onOpen={handleGiftOpen} />
-        </div>
+      <FadeWrapper show={isVisible} className="relative z-10 text-center px-4 w-full">
+        {!showReveal ? (
+          <>
+            {/* Heading */}
+            <h1 className="font-romantic text-4xl md:text-5xl text-foreground mb-8 md:mb-12">
+              You won 💝
+            </h1>
 
-        {/* Continue button - only shows after gift is opened */}
-        {giftOpened && (
-          <div className="animate-fade-in mt-8">
-            <Button onClick={handleContinue} size="lg">
-              Open your letter 💌
-            </Button>
+            {/* Gift Box */}
+            <div className="mb-8 md:mb-12">
+              <GiftBox onOpen={handleGiftOpen} />
+            </div>
+
+            {/* Buttons - only shows after gift is opened */}
+            {giftOpened && (
+              <div className="animate-fade-in mt-8 flex flex-col items-center gap-4">
+                <Button onClick={handleContinue} variant="outline" className="w-full max-w-md">
+                  Open your letter 💌
+                </Button>
+
+                <Button
+                  onClick={handleReveal}
+                  size="lg"
+                  className="w-full max-w-md animate-pulse-glow"
+                >
+                  Well… since you stayed that long, you deserve a real gift 😌
+                </Button>
+              </div>
+            )}
+          </>
+        ) : (
+          /* Real Gift Reveal */
+          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-2xl max-w-sm mx-auto animate-scale-in border border-white/50">
+            <div className="relative mb-6 rounded-xl overflow-hidden shadow-lg mx-auto" style={{ maxWidth: '300px' }}>
+              <img
+                src={`${import.meta.env.BASE_URL}images/dress.jpg`}
+                alt="A special gift for you"
+                className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+
+            <div className="space-y-4">
+              <p className="font-romantic text-2xl md:text-3xl text-primary">
+                Do you like it? 😌
+              </p>
+              <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed">
+                Look behind you…
+                <br />
+                <span className="font-semibold text-foreground mt-2 block">
+                  Someone is standing there with something for you.
+                </span>
+              </p>
+            </div>
           </div>
         )}
       </FadeWrapper>

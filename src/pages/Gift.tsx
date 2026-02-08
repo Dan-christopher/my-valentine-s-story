@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import GiftBox from '@/components/GiftBox';
 import FadeWrapper from '@/components/FadeWrapper';
 import FloatingHearts from '@/components/FloatingHearts';
+import { Gift as GiftIcon } from 'lucide-react';
 
 /**
  * Gift Page - The reward reveal
@@ -63,13 +64,26 @@ const Gift = () => {
             {/* Buttons - only shows after gift is opened */}
             {giftOpened && (
               <div className="animate-fade-in mt-8 flex flex-col items-center gap-4">
-                <Button
+                <style>
+                  {`
+                    @keyframes playful-gift {
+                      0%, 100% { transform: scale(1) rotate(0deg); }
+                      25% { transform: scale(1.05) rotate(-3deg); }
+                      50% { transform: scale(1) rotate(0deg); }
+                      75% { transform: scale(1.05) rotate(3deg); }
+                    }
+                  `}
+                </style>
+                <button
                   onClick={handleReveal}
-                  size="lg"
-                  className="w-full max-w-md animate-pulse-glow"
+                  className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-rose-300 via-pink-400 to-rose-300 text-white font-romantic font-bold text-lg shadow-[0_4px_15px_rgba(251,113,133,0.4)] hover:shadow-[0_8px_25px_rgba(251,113,133,0.6)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 mx-auto"
+                  style={{
+                    animation: 'playful-gift 2.5s infinite ease-in-out'
+                  }}
                 >
-                  Well… since you stayed that long, you deserve a real gift 😌
-                </Button>
+                  <GiftIcon className="w-5 h-5 animate-bounce" />
+                  <span>Tap to open your gift 🎀</span>
+                </button>
               </div>
             )}
           </>

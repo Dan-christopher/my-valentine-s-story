@@ -51,6 +51,9 @@ const GiftBox = ({ onOpen }: GiftBoxProps) => {
             <p className="font-romantic text-xl md:text-2xl text-primary mt-4 leading-relaxed">
               You won because you always stayed with me till the end. 💗
             </p>
+            <p className="font-romantic text-xl md:text-2xl text-primary mt-4 leading-relaxed">
+              But since you stayed that long, you definitely deserve a gift🥰.
+            </p>
           </div>
         </div>
       </div>

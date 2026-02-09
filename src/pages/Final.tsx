@@ -213,7 +213,7 @@ const Final = () => {
         </div> */}
 
         {/* End message */}
-        {/* Even tighter spacing for better visibility */}
+        {/* Even tighter spacing for better visibility,,  */}
         <div className="mt-0 pt-4 border-t border-rose-light w-full flex flex-col items-center text-center">
           <div className="max-w-sm w-full">
             <p className="font-romantic text-lg sm:text-xl text-primary">

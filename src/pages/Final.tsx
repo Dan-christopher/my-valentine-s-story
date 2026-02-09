@@ -38,6 +38,15 @@ const Final = () => {
     "/my-valentine-s-story/images/photo15.jpeg",
     "/my-valentine-s-story/images/photo16.jpeg",
     "/my-valentine-s-story/images/photo17.jpeg",
+    "/my-valentine-s-story/images/photo18.jpeg",
+    "/my-valentine-s-story/images/photo19.jpeg",
+    "/my-valentine-s-story/images/photo20.jpeg",
+    "/my-valentine-s-story/images/photo21.jpeg",
+    "/my-valentine-s-story/images/photo22.jpeg",
+    "/my-valentine-s-story/images/photo23.jpeg",
+    "/my-valentine-s-story/images/photo24.jpeg",
+    "/my-valentine-s-story/images/photo25.jpeg",
+    "/my-valentine-s-story/images/photo26.jpeg",
   ];
 
 

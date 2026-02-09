@@ -10,7 +10,7 @@ const letterLines = [
   "My dearest love,",
   "",
   "From the moment you came into my life,",
-  "my patience level increased by 100%🥰.",
+  "my patience level increased by 100% 🥰.",
   "",
   "You gave me so much love that",
   "I became the next Gautama Buddha",

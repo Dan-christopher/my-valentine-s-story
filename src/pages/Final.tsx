@@ -204,13 +204,13 @@ const Final = () => {
         </button>
 
         {/* Song info */}
-        <div className="text-center w-full px-4">
+        {/* <div className="text-center w-full px-4">
           <p className="text-muted-foreground font-body text-sm mb-4 sm:mb-6">
             <span className="font-semibold text-foreground">Enna Sona</span> - Arijit Singh
             <br />
             <span className="text-xs italic">from OK Jaanu</span>
           </p>
-        </div>
+        </div> */}
 
         {/* End message */}
         {/* Even tighter spacing for better visibility */}

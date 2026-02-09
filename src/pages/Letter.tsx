@@ -10,23 +10,22 @@ const letterLines = [
   "My dearest love,",
   "",
   "From the moment you came into my life,",
-  "everything changed for the better.",
+  "my patience level increased by 100%🥰.",
   "",
-  "You have this incredible way",
-  "of making ordinary moments",
-  "feel absolutely magical.",
+  "You gave me so much love that",
+  "I became the next Gautama Buddha",
   "",
   "Your smile lights up my world,",
-  "and your laugh is my favorite sound.",
+  "and your attitude keeps me humble.",
   "",
-  "Thank you for being you,",
-  "for choosing us,",
-  "for making every day brighter.",
+  "You are the only person who can",
+  "make me smile in 2 seconds",
+  "and also annoy me in 0.5 seconds 😭💕",
   "",
   "I love you more than words can say.",
   "",
   "Forever yours,",
-  "[Your Name] 💕",
+  "Dan Christopher 💕",
 ];
 
 /**
@@ -75,7 +74,7 @@ const Letter = () => {
   return (
     <div className="page-container relative overflow-hidden min-h-screen py-12">
       <FloatingHearts />
-      
+
       <FadeWrapper show={isVisible} className="relative z-10 w-full max-w-lg mx-auto px-4">
         {/* Title */}
         <h1 className="font-romantic text-3xl md:text-4xl text-foreground text-center mb-8">
@@ -87,23 +86,23 @@ const Letter = () => {
           {/* Closed envelope */}
           {!envelopeOpen && (
             <div className="text-center animate-fade-in">
-              <div 
+              <div
                 className="relative inline-block cursor-pointer group"
                 onClick={handleOpenEnvelope}
               >
                 {/* Envelope shadow */}
                 <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl transform translate-y-4" />
-                
+
                 {/* Envelope body */}
                 <div className="relative bg-gradient-to-br from-rose-light to-blush rounded-2xl p-12 md:p-16 shadow-[var(--shadow-card)] group-hover:scale-105 transition-transform duration-300">
                   {/* Envelope flap (triangle) */}
                   <div className="absolute top-0 left-0 right-0 h-16 overflow-hidden">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[100px] border-r-[100px] border-t-[60px] border-l-transparent border-r-transparent border-t-primary/30" />
                   </div>
-                  
+
                   <Mail className="w-20 h-20 md:w-24 md:h-24 text-primary" />
                 </div>
-                
+
                 <p className="mt-6 text-muted-foreground font-body animate-pulse">
                   Tap to open 💌
                 </p>

@@ -1,10 +1,72 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '@/components/Button';
+
 import GiftBox from '@/components/GiftBox';
 import FadeWrapper from '@/components/FadeWrapper';
 import FloatingHearts from '@/components/FloatingHearts';
-import { Gift as GiftIcon } from 'lucide-react';
+import { Gift as GiftIcon, Heart } from 'lucide-react';
+
+const Envelope = ({ onOpen }: { onOpen: () => void }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    if (isOpen) return;
+    setIsOpen(true);
+    setTimeout(onOpen, 800);
+  };
+
+  return (
+    <div
+      onClick={handleClick}
+      className="group relative flex flex-col items-center gap-6 cursor-pointer py-8 hover:scale-105 transition-transform duration-500"
+    >
+      <div className="relative w-64 h-40 bg-stone-100 shadow-xl rounded-md flex justify-center items-end">
+
+        {/* Letter Inside (Peeking) */}
+        <div className={`absolute top-2 left-4 right-4 h-32 bg-white shadow-sm rounded-sm transition-all duration-700 ease-in-out border border-gray-100 ${isOpen ? '-translate-y-16' : ''}`}>
+          <div className="p-4 space-y-3 opacity-40">
+            <div className="h-1.5 bg-gray-300 rounded w-full"></div>
+            <div className="h-1.5 bg-gray-300 rounded w-3/4"></div>
+            <div className="h-1.5 bg-gray-300 rounded w-full"></div>
+            <div className="h-1.5 bg-gray-300 rounded w-1/2"></div>
+          </div>
+        </div>
+
+        {/* Side/Bottom Flaps (Pocket) */}
+        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-md">
+          {/* Left Triangle */}
+          <div className="absolute bottom-0 left-0 w-0 h-0 border-l-[128px] border-t-[80px] border-l-[#f5f5f4] border-t-transparent border-b-[#e7e5e4] border-r-transparent"></div>
+          {/* Right Triangle */}
+          <div className="absolute bottom-0 right-0 w-0 h-0 border-r-[128px] border-t-[80px] border-r-[#f5f5f4] border-t-transparent border-b-[#e7e5e4] border-l-transparent"></div>
+
+          {/* Bottom Triangle - creates the pocket shape */}
+          <div className="absolute bottom-0 left-0 right-0 h-0 border-b-[90px] border-l-[128px] border-r-[128px] border-b-[#ebe8e6] border-l-transparent border-r-transparent shadow-sm"></div>
+        </div>
+
+        {/* Top Flap (The one that opens) */}
+        <div
+          className={`absolute top-0 left-0 right-0 z-20 origin-top transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) ${isOpen ? 'z-0' : ''}`}
+          style={{
+            transformStyle: 'preserve-3d',
+            transform: isOpen ? 'rotateX(180deg)' : 'rotateX(0deg)'
+          }}
+        >
+          <div className="w-0 h-0 border-l-[128px] border-r-[128px] border-t-[100px] border-l-transparent border-r-transparent border-t-[#d6d3d1] relative drop-shadow-md">
+            {/* Heart Seal */}
+            <div className="absolute -top-[60px] left-[-12px] text-rose-500 drop-shadow-sm">
+              <Heart size={24} fill="currentColor" strokeWidth={0} />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <span className="font-romantic text-xl text-rose-500/80 group-hover:text-rose-600 transition-colors duration-300 animate-pulse mt-2">
+        Tap to open 💌
+      </span>
+    </div>
+  );
+};
 
 /**
  * Gift Page - The reward reveal
@@ -110,10 +172,8 @@ const Gift = () => {
                 </span>
               </p>
 
-              <div className="pt-4 animate-fade-in" style={{ animationDelay: '1000ms' }}>
-                <Button onClick={handleContinue} variant="primary" size="lg" className="w-full">
-                  Now… open your letter 💌
-                </Button>
+              <div className="pt-8 animate-fade-in flex justify-center w-full" style={{ animationDelay: '600ms' }}>
+                <Envelope onOpen={handleContinue} />
               </div>
             </div>
           </div>

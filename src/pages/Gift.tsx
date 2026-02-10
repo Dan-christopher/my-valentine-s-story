@@ -103,10 +103,10 @@ const Gift = () => {
                 Do you like it? 😌
               </p>
               <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
-                Look behind you…
+                Piche dekho
                 <br />
                 <span className="font-semibold text-foreground mt-2 block">
-                  Someone is standing there with something for you.
+                  Vaishali khadi h a gift lekr 😂
                 </span>
               </p>
 

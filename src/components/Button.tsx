@@ -11,16 +11,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * Romantic Button Component
  * Styled with soft shadows, rounded corners, and gentle hover effects
  */
-const Button = ({ 
-  children, 
-  variant = 'primary', 
+const Button = ({
+  children,
+  variant = 'primary',
   size = 'md',
   className,
-  ...props 
+  ...props
 }: ButtonProps) => {
   const baseStyles = `
     font-body font-medium rounded-full 
-    transition-all duration-300 ease-out
+    transition-all duration-500 ease-in-out
     focus:outline-none focus:ring-2 focus:ring-primary/50
     disabled:opacity-50 disabled:cursor-not-allowed
     active:scale-95

@@ -108,7 +108,7 @@ const QuizInvite = () => {
                         onTouchStart={moveButton}
                         onClick={moveButton}
                         className={`
-              transition-all duration-300 ease-out
+              transition-all duration-500 ease-in-out
               px-6 py-3 rounded-full font-body font-semibold text-lg
               bg-white text-muted-foreground border-2 border-gray-200 shadow-sm
               hover:bg-gray-50 active:scale-95

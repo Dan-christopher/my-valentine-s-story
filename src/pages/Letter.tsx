@@ -13,7 +13,7 @@ const letterLines = [
   "my patience level increased by 100% 🥰.",
   "",
   "You gave me so much love that",
-  "I became the next Gautama Buddha",
+  "I became the next Gautama Buddha.",
   "",
   "Your smile lights up my world,",
   "and your attitude keeps me humble.",

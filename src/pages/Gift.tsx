@@ -162,7 +162,7 @@ const Gift = () => {
 
             <div className="space-y-4">
               <p className="font-romantic text-2xl md:text-3xl text-primary">
-                Do you like it? 😌
+                Yelo 🥰
               </p>
               <p className="font-body text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
                 Piche dekho
